@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        li {
+            list-style-type: none;
+        }
+
+        body {
+            background-color: black;
+        }
+
+        section {
+            position: relative;
+            width: 100%;
+            height: 100vh;
+            /* transform-style: preserve-3d;
+            perspective: 500px; */
+        }
+
+        section h2 {
+            position: relative;
+            width: 100%;
+            height: 100vh;
+            line-height: 100vh;
+            font-size: 10vw;
+            color: #fff;
+            font-weight: bold;
+            text-align: center;
+        }
+
+        .banner {
+            transform-style: preserve-3d;
+            perspective: 500px;
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            display: flex;
+            flex-wrap: wrap;
+        }
+
+        .banner .blocks {
+            position: relative;
+            width: 5%;
+            height: 5vh;
+            background: #fff;
+            animation: ani 2s 1s ease-in-out forwards;
+
+        }
+
+        /* 가로로 채우기를 랜덤하게 보이도록 함 */
+        .banner .blocks:nth-child(even) {
+            animation: ani 1s ease-in-out forwards;
+        }
+
+        .banner .blocks:nth-child(7n + 3) {
+            animation: ani 2.5s ease-in-out forwards;
+        }
+
+        .banner .blocks:nth-child(7n + 7) {
+            animation: ani 1.5s ease-in-out forwards;
+        }
+
+
+        @keyframes ani {
+            0% {
+                opacity: 0;
+                transform: scale(0) translateY(1000px);
+            }
+
+            50% {
+                opacity: 1;
+
+                background-image: url(./main1.jpg);
+                background-attachment: fixed;
+                background-size: 100vw;
+                overflow: hidden;
+            }
+
+            100% {
+                opacity: 1;
+                transform: scale(1) translateY(0px);
+                background-image: url(./main1.jpg);
+                background-attachment: fixed;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <section>
+        <h2>Javascript Animation</h2>
+        <div class="banner">
+            <div class="blocks"></div>
+        </div>
+    </section>
+
+    <script>
+        const banner = document.getElementsByClassName('banner')[0];
+        const blocks = document.getElementsByClassName('blocks');
+        // html collection 객체는 실시간 반영
+        //const blocks = document.querySelectorAll('.blocks');
+
+        for (let i = 0; i < 400; i++) {
+            //console.log(parseInt(i / 20))
+            banner.innerHTML += "<div class='blocks'></div>";
+            blocks[i].style.animationDelay = `${i * 0.05}s`; // 시간제어 
+        }
+        for (let i = 0, count = 0; i < 20; i++) {
+            for (let a = 0; a < 20; a++, count++) {
+                blocks[count].style.backgroundPosition = `${-a * 5}vw ${-i * 5}vh`;
+                console.log(count, -a * 5, -i * 5);
+            }
+        }
+
+
+    </script>
+</body>
+
+</html>
