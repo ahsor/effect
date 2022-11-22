@@ -97,35 +97,20 @@
         }
 
         .circle {
-            width: 50vw;
-            height: 50vw;
+            width: 60vw;
+            height: 60vw;
             border-radius: 50vw;
-            background-color: olivedrab;
+            background-color: antiquewhite;
             position: absolute;
         }
 
         .circle01 {
-            right: -25vw;
-            bottom: -25vw;
-        }
-
-        .circle02 {
-            left: -10vw;
-            top: -10vw;
-        }
-
-        .circle03 {
-            transform: scale(0.5);
-            background-color: antiquewhite;
-            left: 10vw;
-            top: 10vw;
-        }
-
-        .circle04 {
-            transform: scale(0.3);
-            background-color: antiquewhite;
-            left: 50vw;
-            top: -5vw;
+            right: 10vw;
+            top: -70px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            /* background-image: url(./images/player2.png); */
         }
     </style>
 </head>
@@ -155,10 +140,9 @@
     </header>
 
     <div class="background-container">
-        <div class="circle  circle01"></div>
-        <div class="circle  circle02"></div>
-        <div class="circle  circle03"></div>
-        <div class="circle  circle04"></div>
+        <div class="circle  circle01">
+            <img src="./images/player2.png" alt="">
+        </div>
     </div>
     <script>
 
