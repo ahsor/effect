@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="./css/style.css">
+    <link rel="stylesheet" href="./css/flexBody.css">
+    <style>
+        .loading {
+            display: flex;
+            justify-content: center;
+        }
+
+        .circle {
+            width: 50px;
+            height: 50px;
+            border-radius: 50px;
+            gap: 10px;
+            transform: scale(0);
+            opacity: 0;
+            animation: loading 1s infinite linear;
+        }
+
+        @keyframes loading {
+            0% {
+                transform: scale(0);
+                opacity: 0;
+            }
+
+            50% {
+                transform: scale(1);
+                opacity: 1;
+            }
+        }
+
+        .circle1 {
+            background: rgb(253, 153, 240);
+            animation-delay: 0s;
+        }
+
+        .circle2 {
+            background: rgb(103, 215, 135);
+            animation-delay: 0.2s;
+        }
+
+        .circle3 {
+            background: rgb(112, 144, 240);
+            animation-delay: 0.4s;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="loading">
+        <div class="circle circle1"></div>
+        <div class="circle circle2"></div>
+        <div class="circle circle3"></div>
+    </div>
+</body>
+
+</html>

@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="./css/style.css">
+    <link rel="stylesheet" href="./css/flexBody.css">
+    <!-- 
+        border-radius 비율 만들어 주는 사이트 
+        https://9elements.github.io/fancy-border-radius/full-control.html
+
+        transform:rotate를 사용할 수도 있지만 그런 경우 구조와 내용이 복잡해짐
+        border-radius: 34% 64% 77% 26% / 73% 54% 45% 19%; 의 값을 바꾸는 것이 편리함 
+     -->
+    <style>
+        .contents {
+            width: 300px;
+            height: 300px;
+            border: 1px solid #ccc;
+            border-radius: 34% 64% 77% 26% / 73% 54% 45% 19%;
+            position: relative;
+            animation: morph 8s infinite;
+            font-size: 12px;
+
+        }
+
+        .contents>div {
+            width: 200px;
+            height: 200px;
+        }
+
+        .contents::after,
+        .contents::before {
+            content: '';
+            display: block;
+            width: 300px;
+            height: 300px;
+            border: 1px solid #ccc;
+            position: absolute;
+            top: 0;
+            left: 0;
+            animation: morph 8s infinite;
+        }
+
+        .contents::after {
+            transform: rotate(60deg);
+        }
+
+        .contents::before {
+            transform: rotate(120deg);
+        }
+
+        @keyframes morph {
+            0% {
+                border-radius: 34% 64% 77% 26% / 73% 54% 45% 19%;
+            }
+
+            50% {
+                border-radius: 11% 76% 40% 38% / 42% 69% 23% 37%;
+            }
+
+            100% {
+                border-radius: 51% 59% 35% 57% / 70% 16% 68% 16%;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="contents content1">
+        <div>
+            <h3>Heading</h3>
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Alias nihil consectetur deleniti distinctio,
+                quia
+                rem optio, minima eos atque rerum repellendus adipisci doloremque fuga, ipsam libero eligendi ab. Animi,
+                dolores.</p>
+            <button>더보기</button>
+        </div>
+    </div>
+
+</body>
+
+</html>
