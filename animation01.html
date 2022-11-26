@@ -24,12 +24,15 @@
             position: relative;
             animation: morph 8s infinite;
             font-size: 12px;
-
+            padding: 55px;
         }
 
         .contents>div {
             width: 200px;
             height: 200px;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
         }
 
         .contents::after,
@@ -51,6 +54,10 @@
 
         .contents::before {
             transform: rotate(120deg);
+        }
+
+        button {
+            padding: 5px 0;
         }
 
         @keyframes morph {
