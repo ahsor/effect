@@ -288,6 +288,7 @@
         let navlist = document.querySelector('.lnb');
 
         menu.onclick = () => {
+            if (window.innerWidth >= 730) return;
             menu.classList.toggle('fa-x');
             navlist.classList.toggle('active');
         }

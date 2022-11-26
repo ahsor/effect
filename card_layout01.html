@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>card_layout</title>
+    <link rel="stylesheet" href="./css/style.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <!-- 머티리얼 아이콘은 머티리얼 사이트로 사용할 수 있지만 
+        구글 폰트로 이용할 수도 있음 
+
+        구글 폰트 사용시 select에서  Meterial Icons 선택 후 필요한 아이콘 검색 > 
+        오른쪽 사이트바에서 iconfont의 instructions에서 사용법을 확인할 수 있고 링크등을 가져올 수 있음 
+
+        https://m3.material.io/  > Components > icons > 구글 폰트로 연결됨
+    -->
+    <style>
+        .card-container {
+            width: 1200px;
+            margin: auto;
+        }
+
+        .cards {
+            display: grid;
+            /*grid-template-columns: repeat(3, 1fr);
+             기본 반응형  */
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 20px;
+            color: #fff;
+        }
+
+        .card {
+            background-color: #0c0c33;
+            border-radius: 20px;
+            box-shadow: 0 0 30px rgba(0, 0, 0, 0.18);
+            overflow: hidden;
+        }
+
+        .card-content {
+            padding: 20px;
+        }
+
+
+
+        video {
+            width: 100%;
+            display: block;
+            /* border-radius: 20px 20px 0 0; */
+        }
+
+        .card-info {
+            display: flex;
+            justify-content: space-between;
+            padding: 20px;
+            align-items: center;
+        }
+
+        .material-icons {
+            margin-right: 20px;
+            font-size: 0.8em;
+        }
+
+        @media screen and (max-width:1250px) {
+            .card-container {
+                width: 98%;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="card-container">
+        <div class="cards">
+            <div class="card">
+                <div class="img"><video src="./movies/Pexels Videos 1777892.mp4" alt=""></video></div>
+                <div class="card-content">
+                    <h3>title</h3>
+                    <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Quod sint eveniet ad fugiat
+                        perspiciatis perferendis pariatur doloribus accusantium atque.</p>
+                    <p> Laborum natus ex earum tempore!
+                        Reprehenderit explicabo ullam aperiam nesciunt recusandae.</p>
+                </div>
+                <div class="card-info">
+                    <div><span class="material-icons">
+                            thumb_up
+                        </span>310</div>
+
+                    <div><a href="./show.html" class="card-link">자세히 보기</a></div>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="img"><video src="./movies/Pexels Videos 1777892.mp4" alt=""></video></div>
+                <div class="card-content">
+                    <h3>title</h3>
+                    <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Quod sint eveniet ad fugiat
+                        perspiciatis perferendis pariatur doloribus accusantium atque.</p>
+                    <p> Laborum natus ex earum tempore!
+                        Reprehenderit explicabo ullam aperiam nesciunt recusandae.</p>
+                </div>
+                <div class="card-info">
+                    <div><span class="material-icons">
+                            thumb_up
+                        </span>310</div>
+
+                    <div><a href="./show.html" class="card-link">자세히 보기</a></div>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="img"><video src="./movies/Pexels Videos 1777892.mp4" alt=""></video></div>
+                <div class="card-content">
+                    <h3>title</h3>
+                    <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Quod sint eveniet ad fugiat
+                        perspiciatis perferendis pariatur doloribus accusantium atque.</p>
+                    <p> Laborum natus ex earum tempore!
+                        Reprehenderit explicabo ullam aperiam nesciunt recusandae.</p>
+                </div>
+                <div class="card-info">
+                    <div><span class="material-icons">
+                            thumb_up
+                        </span>310</div>
+
+                    <div><a href="./show.html" class="card-link">자세히 보기</a></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

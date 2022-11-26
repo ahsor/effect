@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Digital Clock</title>
+    <!-- Stylesheet-->
+    <style>
+        * {
+            padding: 0;
+            margin: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            height: 100vh;
+            background: linear-gradient(to bottom,
+                    #2987e4 50%,
+                    #16191e 50%);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .clock {
+            display: flex;
+            gap: 20px;
+            font-size: 100px;
+            color: #fff;
+        }
+
+        .clock>div {
+            width: 150px;
+            height: 150px;
+            background-color: white;
+            color: #000;
+            font-weight: bold;
+            text-align: center;
+            line-height: 150px;
+            border-radius: 20px;
+        }
+
+        .hour {
+            height: 60px;
+            width: 10px;
+            top: 100px;
+        }
+
+        .minute {
+            height: 80px;
+            width: 5px;
+            top: 80px;
+        }
+
+        .seconds {
+            height: 90px;
+            width: 3px;
+            top: 70px;
+            background-color: #2987e4;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="clock">
+        <div class="hour hand" id="hour"></div> :
+        <div class="minute hand" id="minute"></div> :
+        <div class="seconds hand" id="seconds"></div>
+    </div>
+    <!-- Script -->
+    <script>
+        let hour = document.getElementById("hour");
+        let minute = document.getElementById("minute");
+        let seconds = document.getElementById("seconds");
+
+        /* 1초 마다 현재 시간값 재설정 */
+        var timer = setInterval(function () {  // 변수 timer에 setInterval 구문을 실행
+
+            var now = new Date();
+            var hr = now.getHours();
+            var min = now.getMinutes();
+            var sec = now.getSeconds();
+
+            // 시간이 한자리 숫자일때 앞에 0 붙이기
+            if (hr >= 10) {
+                hNum = hr;
+            } else {
+                hNum = "0" + hr;
+            };
+
+            // 분이 한자리 숫자일때 앞에 0 붙이기
+            if (min >= 10) {
+                mNum = min;
+            } else {
+                mNum = "0" + min;
+                // https://developer.mozilla.org/ko/docs/Web/JavaScript/Reference/Global_Objects/String/padStart
+                // const str1 = '5';
+                // console.log(str1.padStart(2, '0'));
+                // 반드시 변수에 저장 후 사용해야함 
+            };
+
+            // 초가 한자리 숫자일때 앞에 0 붙이기
+            if (sec >= 10) {
+                sNum = sec;
+            } else {
+                sNum = "0" + sec;
+            };
+
+            // p 태그 안에 시간 출력		
+            hour.innerHTML = (hNum);
+            minute.innerHTML = (mNum);
+            seconds.innerHTML = (sNum);
+
+        }, 1000)  //1초의 시간마다 안쪽의 구문을 반복 실행
+
+    </script>
+</body>
+
+</html>

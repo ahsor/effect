@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Video Background</title>
+    <!-- 
+        showcase = video 배경
+     -->
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        header {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            padding: 40px 100px;
+            z-index: 9999;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        header .logo {
+            color: #fff;
+            text-transform: uppercase;
+            cursor: pointer;
+        }
+
+        .toggle {
+            position: relative;
+            width: 60px;
+            height: 60px;
+            background: url(./images/three-lines.png);
+            background-repeat: no-repeat;
+            background-size: 30px;
+            background-position: center;
+            cursor: pointer;
+        }
+
+        .toggle.active {
+            background: url(./images/cross.png);
+            background-repeat: no-repeat;
+            background-size: 25px;
+            background-position: center;
+            cursor: pointer;
+            /* 중복코드 없으면 배경 Error  */
+        }
+
+        .showcase {
+            position: absolute;
+            right: 0;
+            width: 100%;
+            min-height: 100vh;
+            padding: 100px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: #111;
+            transition: .5s;
+            z-index: 2;
+        }
+
+        .showcase.active {
+            right: 300px;
+        }
+
+        .showcase video {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            opacity: 0.8;
+        }
+
+        /* .overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            mix-blend-mode: overlay;
+        } */
+
+        .text {
+            position: relative;
+            z-index: 10;
+        }
+
+        .text h2 {
+            font-size: 5em;
+            font-weight: 800;
+            color: #fff;
+            line-height: 1em;
+            text-transform: uppercase;
+        }
+
+        .text h3 {
+            font-size: 4em;
+            font-weight: 700;
+            color: #fff;
+            line-height: 1em;
+            text-transform: uppercase;
+        }
+
+        .text p {
+            font-size: 1.1em;
+            color: #fff;
+            margin: 20px 0;
+            font-weight: 400;
+            max-width: 700px;
+        }
+
+        .text a {
+            display: inline-block;
+            font-size: 1em;
+            background: #fff;
+            padding: 10px 30px;
+            text-transform: uppercase;
+            text-decoration: none;
+            font-weight: 500;
+            margin-top: 12px;
+            color: #111;
+            letter-spacing: 2.5px;
+            transition: .2s;
+        }
+
+        .text a:hover {
+            letter-spacing: 6px;
+        }
+
+        .sns {
+            position: absolute;
+            z-index: 10;
+            bottom: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .sns li {
+            list-style: none;
+        }
+
+        .sns li a {
+            display: inline-block;
+            margin-right: 20px;
+            transform: scale(0.5);
+            transition: .5s;
+        }
+
+        .sns li a:hover {
+            transform: scale(0.5) translateY(-15px);
+        }
+
+        .menu {
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 300px;
+            height: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .menu ul {
+            position: relative;
+        }
+
+        .menu ul li {
+            list-style: none;
+        }
+
+        .menu ul li a:hover {
+            color: #dc03f4;
+        }
+
+        section {
+            position: relative;
+            height: 300vh;
+            background-color: antiquewhite;
+            /* .showcase 뒤로 숨게 되므로 section의 높이 100vh 보다 크게 처리하거나 빈 section이 필요  */
+        }
+
+        @media (max-width: 991px) {
+
+            .showcase,
+            .showcase header {
+                padding: 40px;
+            }
+
+            .text h2 {
+                font-size: 3em;
+            }
+
+            .text h3 {
+                font-size: 3em;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="showcase">
+        <header>
+            <h2 class="logo">My Brand</h2>
+            <div class="toggle"></div>
+        </header>
+        <video src="./movies/production ID_4524588.mp4" muted loop autoplay></video>
+        <div class="overlay"></div>
+        <div class="text">
+            <h2>The World is so Beautiful</h2>
+            <h3>Keep Exploring it...</h3>
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Impedit, odio! Iste blanditiis, a nobis ea,
+                ratione voluptas laboriosam totam labore ipsam magni incidunt tempora possimus, amet culpa hic sequi
+                cupiditate quos accusamus quod? Dicta, asperiores.</p>
+            <a href="#"> 더보기</a>
+        </div>
+        <ul class="sns">
+            <li><a href="#"><img src="./images/facebook.png" alt=""></a></li>
+            <li><a href="#"><img src="./images/twitter.png" alt=""></a></li>
+            <li><a href="#"><img src="./images/instagram.png" alt=""></a></li>
+        </ul>
+    </div>
+    <div class="menu">
+        <ul>
+            <li><a href="#">HOME</a></li>
+            <li><a href="#">NEWS</a></li>
+            <li><a href="#">DESTINATION</a></li>
+            <li><a href="#">BLOG</a></li>
+            <li><a href="#">CONTACT</a></li>
+        </ul>
+    </div>
+    <section></section>
+    <script>
+        const menuToggle = document.querySelector('.toggle');
+        const showcase = document.querySelector('.showcase');
+
+        menuToggle.addEventListener('click', () => {
+            menuToggle.classList.toggle('active');
+            showcase.classList.toggle('active');
+        })
+    </script>
+
+
+</body>
+
+</html>
