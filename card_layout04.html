@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>card_layout</title>
+    <link rel="stylesheet" href="./css/style.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <!-- 
+        머티리얼 아이콘은 머티리얼 사이트로 사용할 수 있지만 
+        구글 폰트로 이용할 수도 있음 
+
+        구글 폰트 사용시 select에서  Meterial Icons 선택 후 필요한 아이콘 검색 > 
+        오른쪽 사이트바에서 iconfont의 instructions에서 사용법을 확인할 수 있고 링크등을 가져올 수 있음 
+
+        https://m3.material.io/  > Components > icons > 구글 폰트로 연결됨
+    -->
+    <style>
+        section {
+            padding: 100px;
+            background-color: #fff;
+        }
+
+        .card-container {
+            width: 1200px;
+            margin: auto;
+        }
+
+        .cards {
+            display: grid;
+            /*grid-template-columns: repeat(3, 1fr);
+             기본 반응형  */
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 20px;
+            color: #fff;
+        }
+
+        .card {
+            background-color: #0c0c33;
+            border-radius: 20px;
+            box-shadow: 0 0 30px rgba(0, 0, 0, 0.18);
+            overflow: hidden;
+        }
+
+        .card-content {
+            padding: 20px;
+        }
+
+        .card-content>div {
+            display: flex;
+            justify-content: space-between;
+            margin: 20px;
+        }
+
+        #count {
+            width: 50px;
+            padding-left: 10px;
+        }
+
+        .img {
+            width: 100%;
+            height: 250px;
+            overflow: hidden;
+            background-color: #fff;
+            padding: 10%;
+        }
+
+        img {
+            width: 100%;
+            display: block;
+            /* border-radius: 20px 20px 0 0; */
+        }
+
+        .addCart {
+            padding: 20px;
+            width: 100%;
+            border-radius: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .material-icons {
+            margin-right: 20px;
+        }
+
+
+        .cart-alert-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100vh;
+            background-color: #0c0c3356;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: -10;
+
+        }
+
+        .cart-alert-container.active {
+            z-index: 99;
+        }
+
+        .cart-alert-popup {
+            width: 350px;
+            height: 200px;
+            text-align: center;
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0 0 10px black;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            gap: 20px;
+            /* transform: scale(0); */
+            transform: translateY(-500px);
+            transition: 0.4s;
+        }
+
+        .cart-alert-popup.active {
+            /* transform: scale(1); */
+            transform: translateY(0px);
+        }
+
+        .cart-alert-btn {
+            padding: 10px 20px;
+        }
+
+        @media screen and (max-width:1250px) {
+            .card-container {
+                width: 98%;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- 03은 상품 하나만 테스트하고 04에서 상품 목록 개수 늘리기  -->
+    <section>
+        <div class="cart-container" style="padding: 20px;">
+            <!-- 디자인을 장바구니 아이콘 옆에 개수를 나타내도록 바꿀 수 있음  -->
+            <input type="text" readonly placeholder="0 개" id="cart-container-count">
+            <button>장바구니로 가기</button>
+        </div>
+        <div class="card-container">
+            <div class="cards">
+                <div class="card">
+                    <div class="img"><img src="./card_images/product-1.webp" alt=""></div>
+                    <div class="card-content">
+                        <h3>Tecno Pova 3</h3>
+                        <div>
+                            <p class="price" data-default="12500">12500</p>
+                            <input type="number" class="count" value="1" min="1" max="100">
+                        </div>
+                        <button class="addCart"><span class="material-icons">
+                                shopping_cart
+                            </span> <span>장바구니담기</span></button>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="img"><img src="./card_images/product-2.webp" alt=""></div>
+                    <div class="card-content">
+                        <h3>Asus Note</h3>
+                        <div>
+                            <p class="price" data-default="985000">985000</p>
+                            <input type="number" class="count" value="1" min="1" max="100">
+                        </div>
+                        <button class="addCart"><span class="material-icons">
+                                shopping_cart
+                            </span> <span>장바구니담기</span></button>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="img"><img src="./card_images/product-3.webp" alt=""></div>
+                    <div class="card-content">
+                        <h3>원복식탁셋트</h3>
+                        <div>
+                            <p class="price" data-default="305000">305000</p>
+                            <input type="number" class="count" value="1" min="1" max="100">
+                        </div>
+                        <button class="addCart"><span class="material-icons">
+                                shopping_cart
+                            </span> <span>장바구니담기</span></button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div class="cart-alert-container">
+        <div class="cart-alert-popup">
+            <button></button>
+            <div>장바구에 담았습니다.</div>
+            <button class="cart-alert-btn">ok</button>
+        </div>
+    </div>
+    <script>
+        let counts = document.querySelectorAll('.count');
+        let prices = document.querySelectorAll('.price');
+        // 중복 선언으로 id등을 선택자로 사용할 수 없음 
+
+        // 0개 선택시 필요한 이벤트 확인 필요
+        for (count of counts) {
+            count.addEventListener('blur', (event) => {
+                let prevEl = event.target.previousElementSibling;
+                //console.log(prevEl.getAttribute('data-default'));
+                let min = event.target.value;
+                if (min < 1) {
+                    alert('최소구매개수는 1개입니다.');
+                    event.target.value = 1;
+                    return;
+                }
+                let value = parseInt(event.target.value);
+                let pDefault = parseInt(prevEl.getAttribute('data-default'));
+                priceCalc(prevEl, value, pDefault);
+            })
+        }
+
+        for (count of counts) {
+            count.addEventListener('click', (event) => {
+                let prevEl = event.target.previousElementSibling;
+                //console.log(prevEl.getAttribute('data-default'));
+                let value = parseInt(event.target.value);
+                let pDefault = parseInt(prevEl.getAttribute('data-default'));
+                priceCalc(prevEl, value, pDefault);
+            })
+        }
+
+        function priceCalc(prevEl, value, pDefault) {
+            prevEl.innerHTML = value * pDefault;
+            //console.log(parseInt(prevEl.textContent))
+        }
+
+        // data 저장 
+        const cartAry = [];
+
+        const addCarts = document.querySelectorAll('.addCart');
+        const h3s = document.querySelectorAll('.card-content>h3');
+
+        addCarts.forEach((addCart, index) => {
+            addCart.addEventListener('click', (event) => {
+                const cartContainer = document.querySelector('.cart-alert-container');
+                const cartPopup = document.querySelector('.cart-alert-popup');
+
+                cartContainer.classList.add('active');
+                cartPopup.classList.add('active');
+
+                //let productName = ;
+                // .addCart 기준이므로 previousElementSibling
+                console.log('tt', prices[index].textContent);
+
+                let cartProduct = {
+                    productName: h3s[index].textContent,
+                    count: counts[index].value,
+                    price: prices[index].textContent
+                };
+                cartAry.push(cartProduct);
+                console.log(cartAry);
+
+                // 장바구니에 담김 목록 개수 출력 
+                document.querySelector('#cart-container-count').setAttribute('placeholder', `${cartAry.length} 개`);
+            })
+
+        })
+
+        const cartAlertBtn = document.querySelector('.cart-alert-btn');
+        cartAlertBtn.addEventListener('click', () => {
+            const cartContainer = document.querySelector('.cart-alert-container');
+            const cartPopup = document.querySelector('.cart-alert-popup');
+
+            cartContainer.classList.remove('active');
+            cartPopup.classList.remove('active');
+        })
+
+    </script>
+    <script>
+        const goCart = document.querySelector('.cart-container button');
+        goCart.addEventListener('click', function () {
+            localStorage.setItem('cart-items', JSON.stringify(cartAry)); // stringify
+            location.href = './cart.html';
+        })
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="./css/style.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <style>
+        .cart-list-container {
+            width: 800px;
+            margin: auto;
+        }
+
+        .del-item {
+            cursor: pointer;
+            width: 50px;
+            height: 50px;
+            background-color: orange;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="cart-header">
+        <h1>장바구니</h1>
+        <div>총 상품 개수 <span class="cart-count"></span></div>
+        <input type="checkbox" id="cart-all-check"><label for="cart-all-check">전체선택</label>
+        <input type="button" id="selectDelete" value="선택삭제">
+    </div>
+    <div class="cart-list-container"></div>
+
+    <script>
+        const arys = JSON.parse(localStorage.getItem('cart-items'));
+        //console.log(JSON.parse(arys));
+        console.log(arys);
+        document.querySelector('.cart-count').innerHTML = arys.length;
+
+        let tableInner = '';
+        for (ary of arys) {
+            tableInner += `<tr>
+                    <td>
+                        <input type="checkbox">
+                    </td>
+                    <td>${ary.productName}</td>
+                    <td>${ary.count}</td>
+                    <td>${ary.price}</td>
+                    <td>
+                        <span class="material-icons del-item">delete_forever</span>
+                    </td>
+                </tr>`;
+        }
+
+        //document.write("<table>" + table + "</table>");
+        let table = document.createElement('table');
+        console.log(table)
+        table.innerHTML = tableInner;
+        //table.appendChild(tableInner); // createElement로 생성시에만 append
+        //document.getElementsByClassName('.cart-list-container')[0].appendChild(table); // error
+        document.querySelector('.cart-list-container').appendChild(table);
+
+
+        const cartAllCheck = document.querySelector('#cart-all-check');
+        const allCheckbox = document.querySelectorAll("table input[type='checkbox']");
+        cartAllCheck.addEventListener('click', (event) => {
+            if (event.target.checked)
+                for (check of allCheckbox) {
+                    check.checked = true;
+                }
+            else
+                for (check of allCheckbox) {
+                    check.checked = false;
+                }
+        })
+
+        document.querySelector('#selectDelete').addEventListener('click', (event) => {
+            console.log(event.target)
+            for (deletebox of allCheckbox) {
+                if (deletebox.checked) {
+                    console.log(deletebox.parentElement.parentElement);
+                    deletebox.parentElement.parentElement.remove();
+                }
+            }
+        })
+
+        const delItems = document.querySelectorAll('.del-item');
+        for (item of delItems) {
+            item.addEventListener('click', (event) => {
+                console.log(event.target);
+                // 함수로 별로제작 가능 
+                // for (deletebox of allCheckbox) {
+                //     if (deletebox.checked) {
+                //         console.log(deletebox.parentElement.parentElement);
+                //         deletebox.parentElement.parentElement.remove();
+                //     }
+                // }
+                event.target.parentElement.parentElement.remove();
+            })
+        }
+
+
+    </script>
+</body>
+
+</html>
