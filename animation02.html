@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="./css/style.css">
+    <style>
+        .contents {
+            height: 100vh;
+            padding: 40px;
+            background-color: #1822c1;
+            color: #fff;
+            overflow: hidden;
+            text-transform: uppercase;
+        }
+
+        .text-slide {
+            font-size: 1.7rem;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+
+        /* // 한글자씩 분리해서 애니메이션 시킬 클래스로 
+        // javascript에서 class 추가  */
+        .text-slide-letter {
+            display: inline-block;
+            animation: zoom 1s ease;
+        }
+
+        @keyframes zoom {
+            0% {
+                transform: scale(0) translateX(20vw);
+            }
+
+            80% {
+                transform: scale(3, 1.5);
+                text-shadow: 30px 30px 30px black;
+            }
+
+            100% {
+                text-shadow: 0px 2px 0px black;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="contents">
+        <div class="text-slide">
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Alias nihil consectetur deleniti distinctio
+            dolores.
+        </div>
+    </div>
+    <script>
+        const textslide = document.querySelector('.text-slide');
+        const text = textslide.innerHTML.trim().split('');
+        let intervalCount;
+        let slideInterval;
+
+        const init = () => {
+            intervalCount = 0;
+            textslide.innerHTML = '';
+            slideInterval = setInterval(slideInLetter, 100);
+        }
+
+        const slideInLetter = () => {
+            if (intervalCount >= text.length - 1) {
+                clearInterval(slideInterval);
+            }
+            const character = text[intervalCount] === '' ? '&nbsp;' : text[intervalCount];
+
+            const newText = document.createElement('span');
+            newText.classList.add("text-slide-letter");
+            newText.innerHTML = `${character}`;
+            textslide.append(newText);
+            intervalCount++;
+        }
+
+        init();
+    </script>
+</body>
+
+</html>
