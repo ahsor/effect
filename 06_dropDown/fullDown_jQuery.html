@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/boxicons@latest/css/boxicons.min.css">
+    <!-- 
+        https://boxicons.com/
+        https://github.com/atisawd/boxicons
+     -->
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: '';
+        }
+
+        body {
+            background-color: #e2fefd;
+        }
+
+        .select-menu {
+            width: 380px;
+            margin: 150px auto;
+        }
+
+        .select-btn {
+            display: flex;
+            height: 55px;
+            background-color: #fff;
+            padding: 20px;
+            font-size: 18px;
+            font-weight: 400;
+            border-radius: 8px;
+            align-items: center;
+            justify-content: space-between;
+            box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+        }
+
+        .select-btn i {
+            font-size: 25px;
+        }
+
+        .select-menu .options {
+            position: relative;
+            padding: 20px;
+            margin-top: 10px;
+            border-radius: 8px;
+            background: #fff;
+            list-style-type: none;
+            box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+            display: none;
+        }
+
+        /* 다음을 선택하세요를 클릭하면 목록을 표시 */
+        .select-menu.active .options {
+            display: block;
+        }
+
+        .select-btn i {
+            font-size: 25px;
+            transition: 0.5s;
+        }
+
+        .select-menu.active .select-btn i {
+            transform: rotate(-180deg);
+        }
+
+        .option {
+            display: flex;
+            height: 55px;
+            cursor: pointer;
+            padding: 0 16px;
+            border-radius: 8px;
+            align-items: center;
+            background-color: #fff;
+        }
+
+        .option:hover {
+            background: #f2f2f2;
+        }
+
+        .option i {
+            font-size: 25px;
+            margin-left: 12px;
+        }
+
+        .option-text {
+            font-size: 18px;
+            color: #333;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="select-menu">
+        <div class="select-btn">
+            <span class="btn-text"> 다음을 선택하세요. </span>
+            <i class="bx bx-chevron-down"></i>
+        </div>
+        <ul class="options">
+            <li class="option">
+                <i class="bx bxl-github"></i>
+                <span class="option-text">Github</span>
+            </li>
+
+            <li class="option">
+                <i class="bx bxl-instagram-alt"></i>
+                <span class="option-text">Instagram</span>
+            </li>
+            <li class="option">
+                <i class="bx bxl-linkedin-square"></i>
+                <span class="option-text">Linkedin</span>
+            </li>
+            <li class="option">
+                <i class="bx bxl-facebook-circle"></i>
+                <span class="option-text">Facebook</span>
+            </li>
+            <li class="option">
+                <i class="bx bxl-twitter"></i>
+                <span class="option-text">Twitter</span>
+            </li>
+
+        </ul>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js"></script>
+    <script>
+        const optionMenu = $(".select-menu"),
+            selectBtn = $(".select-btn"),
+            options = $(".option"),
+            btnText = $(".btn-text");
+        console.log( options );
+
+        options.on('click' , function(){
+            let text = $(this).text();
+            console.log( text );
+            btnText.text(text);
+            optionMenu.removeClass('active');
+        })
+       
+        // 캐럿 애니메이션 
+        selectBtn.on("click", function () {
+            optionMenu.toggleClass('active');
+        })
+     
+        // 다른 곳을 클릭하면 닫히도록 
+    </script>
+</body>
+
+</html>

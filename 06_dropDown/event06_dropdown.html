@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      * {
+        box-sizing: border-box;
+        margin: 0;
+      }
+
+      body {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        width: 100%;
+        height: 100vh;
+        padding-bottom: 30px;
+        font-family: "Spoqa Han Sans Neo", "sans-serif";
+        color: #3f4150;
+        background-color: #f4f7fa;
+      }
+
+      ul,
+      li {
+        list-style-type: none;
+        padding-left: 0;
+        margin-left: 0;
+      }
+
+      button {
+        font-family: "Spoqa Han Sans Neo", "sans-serif";
+        font-size: 15px;
+        line-height: 1; /* https://simsimjae.tistory.com/331 */
+        letter-spacing: -0.02em;
+        color: #3f4150;
+        background-color: #fff;
+        border: none;
+        cursor: pointer;
+      }
+
+      button:focus,
+      button:active {
+        outline: none;
+        box-shadow: none;
+      }
+
+      .title {
+        width: 200px;
+        margin-bottom: 16px;
+      }
+
+      .title img {
+        width: 100%;
+        height: auto;
+      }
+
+      form {
+        padding: 40px;
+        background-color: #fff;
+        border-radius: 6px;
+      }
+
+      form h1 {
+        margin-bottom: 8px;
+        font-size: 16px;
+        font-weight: 500;
+        letter-spacing: -0.02em;
+        color: #3f4150;
+      }
+
+      .dropdown {
+        position: relative;
+        z-index: 1;
+        width: 300px;
+        margin-bottom: 8px;
+      }
+
+      .dropdown-toggle {
+        width: 100%;
+        height: 50px;
+        padding: 0 16px;
+        line-height: 50px;
+        color: rgba(133, 136, 150, 0.5);
+        text-align: left;
+        border: 1px solid rgba(224, 226, 231, 0.75);
+        border-radius: 6px;
+        transition: border-color 100ms ease-in;
+      }
+
+      .dropdown-toggle.selected {
+        color: #3f4150;
+        border-color: rgba(224, 226, 231, 1);
+      }
+
+      .dropdown-toggle:active {
+        border-color: rgba(224, 226, 231, 1);
+      }
+
+      .dropdown-menu {
+        position: absolute;
+        z-index: 2;
+        top: calc(100% + 4px);
+        left: 0;
+        width: 100%;
+        max-height: 0;
+        overflow: hidden;
+        background-color: #fff;
+        border: 1px solid transparent;
+        border-radius: 6px;
+        transition: border-color 200ms ease-in, padding 200ms ease-in,
+          max-height 200ms ease-in, box-shadow 200ms ease-in;
+      }
+
+      .dropdown-menu.show {
+        padding: 8px 0;
+        /* max-height: 280px;  디자인적인 문제로 텍스트 선택이 어려움, 높이 조절 필요 */
+        max-height: 1000px;
+        border-color: rgba(224, 226, 231, 0.5);
+        box-shadow: 0 4px 9px 0 rgba(63, 65, 80, 0.1);
+      }
+
+      .dropdown-option {
+        width: 100%;
+        height: 44px;
+        padding: 0 16px;
+        line-height: 44px;
+        text-align: left;
+      }
+
+      .dropdown-option:hover {
+        background-color: #f8f9fa;
+      }
+
+      .next-button {
+        display: block;
+        width: 100%;
+        height: 44px;
+        padding: 0 16px;
+        line-height: 44px;
+        color: #f8f9fa;
+        background-color: #1b1c32;
+        border-radius: 6px;
+        transition: background-color 150ms ease-in;
+      }
+
+      .next-button:disabled {
+        background-color: #e0e2e7;
+        cursor: not-allowed; /* 금지표시 */
+      }
+    </style>
+  </head>
+  <body>
+    <form action="">
+      <h1> 지역을 선택해주세요</h1>
+      <div class="dropdown">
+        <button type="button" class="dropdown-toggle">
+          지역을 선택해주세요
+        </button>
+
+        <ul class="dropdown-menu">
+          <li class="dropdown-item">
+            <button type="button" value="1" class="dropdown-option">
+              서울
+            </button>
+          </li>
+          <li class="dropdown-item">
+            <button type="button" value="2" class="dropdown-option">
+              대전
+            </button>
+          </li>
+          <li class="dropdown-item">
+            <button type="button" value="3" class="dropdown-option">
+              대구
+            </button>
+          </li>
+          <li class="dropdown-item">
+            <button type="button" value="4" class="dropdown-option">
+              부산
+            </button>
+          </li>
+          <li class="dropdown-item">
+            <button type="button" value="5" class="dropdown-option">
+              제주
+            </button>
+          </li>
+          <li class="dropdown-item">
+            <button type="button" value="6" class="dropdown-option">
+              울산
+            </button>
+          </li>
+        </ul>
+      </div>
+      <button type="submit" class="next-button" disabled>다음</button>
+    </form>
+
+    <script>
+      const dropdown = document.querySelector(".dropdown");
+      const toggleButton = document.querySelector(".dropdown-toggle");
+      const menu = document.querySelector(".dropdown-menu");
+      const options = document.querySelectorAll(".dropdown-option");
+      const nextButton = document.querySelector(".next-button");
+
+      toggleButton.addEventListener("click", function () {
+        menu.classList.toggle("show");
+        // 빈칸을 클릭해도 option을 보여 주고
+        // 선택하지 않고 빈칸을 클릭하면 option을 닫음
+      });
+
+      toggleButton.addEventListener("blur", function () {
+        menu.classList.remove("show");
+        // option이 열린 상태에서 밖을 클릭하면 option을 닫음
+      });
+
+      options.forEach(function (option) {
+        option.addEventListener("click", selectOption); // item 이 this로 전달됨
+      });
+
+      function selectOption() {
+        const value = this.textContent.trim();
+        toggleButton.textContent = value;
+        toggleButton.classList.add("selected");
+        nextButton.removeAttribute("disabled");
+      }
+    </script>
+  </body>
+</html>
