@@ -1,2 +1,0 @@
-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
-11-28 생성
