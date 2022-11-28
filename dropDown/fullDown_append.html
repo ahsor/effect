@@ -178,14 +178,19 @@
             })
         })
 
+        // append, appendChild 차이점 확인 
+        // https://blogpack.tistory.com/682
         function append(data) {
             console.log(data);
             selectAppendMenu.innerHTML = "";
             data.forEach((d, i) => {
                 const li = document.createElement('li');
                 li.classList.add('option');
-                li.innerHTML = data[i];
-                selectAppendMenu.appendChild(li);
+                //li.innerHTML = data[i];
+                li.append(data[i]);
+                selectAppendMenu.append(li);
+                // let tt = selectAppendMenu.appendChild(li);
+                // console.log(tt)
             })
         }
 
