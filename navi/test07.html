@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>가로 2depth</title>
+  <link rel="stylesheet" href="../css/style.css">
+  <style>
+    .sideMenu {
+      display: flex;
+      justify-content: center;
+    }
+
+    .sideMenu>ul {
+      display: flex;
+      position: relative;
+    }
+
+    .sideMenu>ul>li>a {
+      display: block;
+      padding: 15px 30px;
+    }
+
+    .subMenu {
+      display: none;
+      position: absolute;
+    }
+
+    /*.sideMenu>ul>li:nth-child(1) .subMenu{left:0;}*/
+    .subMenu1 {
+      left: 170px;
+    }
+
+    .subMenu2 {
+      left: 200px;
+    }
+
+    .subMenu4 {
+      left: 150px;
+    }
+
+    .sideMenu>ul>li:hover .subMenu {
+      display: flex;
+    }
+  </style>
+  <!-- 
+      1depth : 가로 
+      2depth : 가로 
+   -->
+</head>
+
+<body>
+  <header>
+    <h1>logo</h1>
+    <nav class="sideMenu">
+      <ul>
+        <li><a href="#"><span>통합로그인</span></a>
+          <ul class="subMenu subMenu1">
+            <li><a href="#"><span>회원서비스 안내</span></a></li>
+            <li><a href="#"><span>인증서안내</span></a></li>
+            <li><a href="#"><span>간편인증서안내</span></a></li>
+          </ul>
+        </li>
+        <li><a href="#"><span>민원서비스변경안내</span></a>
+          <ul class="subMenu subMenu2">
+            <li><a href="#"><span>민원 서비스 이용 방법</span></a></li>
+            <li><a href="#"><span>민원업무 목록</span></a></li>
+          </ul>
+        </li>
+        <li><a href="#"><span>분야별업무사이트</span></a></li>
+        <li><a href="#"><span>모바일서비스</span></a>
+          <ul class="subMenu subMenu4">
+            <li><a href="#"><span>서비스안내</span></a></li>
+            <li><a href="#"><span>앱설치용QR코드</span></a></li>
+            <li><a href="#"><span>앱설치용QR코드</span></a></li>
+            <li><a href="#"><span>앱설치용QR코드</span></a></li>
+          </ul>
+        </li>
+      </ul>
+    </nav>
+  </header>
+</body>
+
+</html>
+<!-- 
+   간단한 메뉴 : 1depth 
+   깊이감이 있는 메뉴 : 2depth, 3depth....  
+ -->

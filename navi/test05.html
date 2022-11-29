@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>가로 2depth</title>
+  <link rel="stylesheet" href="../css/style.css">
+  <style>
+    /* 1depth만 가로, 3depth는 세로*/
+    .sideMenu>ul {
+      display: flex;
+    }
+
+    .subMenu {
+      display: none;
+    }
+
+    .sideMenu>ul>li:hover .subMenu {
+      display: block;
+    }
+
+    /*.sideMenu>ul>li:hover>a{ 
+        border-bottom: 3px solid black;}*/
+    .sideMenu>ul>li:hover>a>span {
+      border-bottom: 3px solid black;
+    }
+
+    .sideMenu>ul>li>a {
+      display: block;
+      width: 200px;
+    }
+
+    .sideMenu>ul>li:nth-child(2)>a {
+      width: 270px;
+    }
+
+    .sideMenu>ul>li:nth-child(3)>a {
+      width: 250px;
+    }
+  </style>
+</head>
+
+<body>
+  <header>
+    <h1>logo</h1>
+    <nav class="sideMenu">
+      <ul>
+        <li><a href="#"><span>통합로그인</span></a>
+          <ul class="subMenu">
+            <li><a href="#"><span>회원서비스 안내</span></a></li>
+            <li><a href="#"><span>인증서안내</span></a></li>
+            <li><a href="#"><span>간편인증서안내</span></a></li>
+          </ul>
+        </li>
+        <li><a href="#"><span>민원서비스변경안내</span></a>
+          <ul class="subMenu">
+            <li><a href="#"><span>민원 서비스 이용 방법</span></a></li>
+            <li><a href="#"><span>민원업무 목록</span></a></li>
+          </ul>
+        </li>
+        <li><a href="#"><span>분야별업무사이트</span></a></li>
+        <li><a href="#"><span>모바일서비스</span></a>
+          <ul class="subMenu">
+            <li><a href="#"><span>서비스안내</span></a></li>
+            <li><a href="#"><span>앱설치용QR코드</span></a></li>
+          </ul>
+        </li>
+      </ul>
+    </nav>
+  </header>
+</body>
+
+</html>
+<!-- 
+   간단한 메뉴 : 1depth 
+   깊이감이 있는 메뉴 : 2depth, 3depth....  
+ -->

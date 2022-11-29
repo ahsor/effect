@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <!-- 
+        검색창과 같이 만들 수 있고 
+        Json 데이터를 이용하여 검색어 검색하도록 구현해 볼 것 
+     -->
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 100%;
+            height: 100vh;
+        }
+
+        .container {
+            width: 375px;
+            height: 520px;
+            background-color: antiquewhite;
+            border-radius: 15px;
+            box-shadow: 4px 4px 30px rgba(0, 0, 0, 0.06);
+            overflow-y: scroll;
+            padding: 20px;
+        }
+
+        /* 스크롤바 숨기기 : 스크롤바만 숨기고 스크롤은 됨 */
+        .container::-webkit-scrollbar {
+            display: none;
+        }
+
+        .container form {
+            width: 100%;
+            border: 1px solid rgb(114, 0, 101);
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            background-color: #fff;
+            padding: 5px 10px;
+            box-sizing: border-box;
+        }
+
+        .container input {
+            border: none;
+            outline: none;
+            width: 100%;
+            box-shadow: none;
+            padding: 8px 10px;
+        }
+
+        .product-list {
+            padding: 10px;
+        }
+
+        .product {
+            display: flex;
+            align-items: center;
+            cursor: pointer;
+        }
+
+        .product img {
+            width: 70px;
+            height: 70px;
+            object-fit: cover;
+            border-radius: 5px;
+            margin-right: 10px;
+
+        }
+
+        .product .p-details h2 {
+            font-size: 20px;
+            color: #1d1d1d;
+        }
+
+        .product .p-details h3 {
+            font-size: 18px;
+            color: #1d1d1d;
+        }
+    </style>
+
+</head>
+
+<body>
+    <section class="container">
+        <form action="">
+            <img src="images/search-alt-regular-24.png" alt="" id="search-img">
+            <input type="text" name="" id="search-item" placeholder="Search..." onkeyup="search()" autocomplete="off">
+        </form>
+        <div class="product-list">
+            <div class="product">
+                <img src="./images/image01.webp" alt="">
+                <div class="p-details">
+                    <h2>원피스</h2>
+                    <h3>1000원</h3>
+                </div>
+            </div>
+            <div class="product">
+                <img src="./images/image02.webp" alt="">
+                <div class="p-details">
+                    <h2>원피스</h2>
+                    <h3>1000원</h3>
+                </div>
+            </div>
+            <div class="product">
+                <img src="./images/image03.webp" alt="">
+                <div class="p-details">
+                    <h2>청바지</h2>
+                    <h3>1000원</h3>
+                </div>
+            </div>
+            <div class="product">
+                <img src="./images/image04.webp" alt="">
+                <div class="p-details">
+                    <h2>원피스</h2>
+                    <h3>1000원</h3>
+                </div>
+            </div>
+            <div class="product">
+                <img src="./images/image05.webp" alt="">
+                <div class="p-details">
+                    <h2>청바지</h2>
+                    <h3>1000원</h3>
+                </div>
+            </div>
+            <div class="product">
+                <img src="./images/image06.webp" alt="">
+                <div class="p-details">
+                    <h2>원피스</h2>
+                    <h3>1000원</h3>
+                </div>
+            </div>
+            <div class="product">
+                <img src="./images/image07.webp" alt="">
+                <div class="p-details">
+                    <h2>티셔츠</h2>
+                    <h3>1000원</h3>
+                </div>
+            </div>
+            <div class="product">
+                <img src="./images/image08.webp" alt="">
+                <div class="p-details">
+                    <h2>티셔츠</h2>
+                    <h3>1000원</h3>
+                </div>
+            </div>
+        </div>
+    </section>
+    <script>
+        const searchImg = document.querySelector("#search-img");
+        const searchItem = document.querySelector("#search-item");
+        const product = document.querySelectorAll(".product");
+        // 모든 상품 가져오기 
+        console.log(product.length);
+
+        const search = () => {
+            const searchbox = searchItem.value.toUpperCase();
+            // 검색창 글씨 가져오기 // console.log(searchbox);
+            const storitems = document.querySelector(".product-list");
+
+            for (var i = 0; i < product.length; i++) {
+                let match = product[i].getElementsByTagName("h2")[0];
+                //h2 제목을 불러와서
+                if (match) {
+                    let textvalue = match.textContent || match.innerHTML;
+                    if (textvalue.toUpperCase().indexOf(searchbox) > -1) {
+                        product[i].style.display = "";
+                    } else {
+                        product[i].style.display = "none";
+                    }
+                }
+            }
+            searchImg.setAttribute("src", "images/x-square-solid-24.png");
+            // 서치가 끝나면 돋보기 대신 x 버튼으로 텍스트 지우기 효과
+        }
+
+        // 이미지 x 아이콘으로 바꾸기 
+        // 이미지 검색 후 검색창 텍스트를 지우고 다시 처음 상태로 초기화
+        searchImg.addEventListener("click", function () {
+            searchItem.value = "";
+            searchItem.focus();
+            searchImg.setAttribute("src", "images/search-alt-regular-24.png");
+
+            for (var i = 0; i < product.length; i++) {
+                product[i].style.display = "";
+            }
+        })
+    </script>
+</body>
+
+</html>
