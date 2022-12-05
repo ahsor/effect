@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div>
+
+        넘버.toFixed()
+        소수점 이하 자릿수가 줄어든 경우 근사치로 변환 반올림
+        소수점 이하 자릿수가 늘어난 경우 0로 채워짐
+        (2.4).toFixed(4) : 2.4000
+
+
+        toPrecision()
+        소수점 이하 자릿수가 줄어든 경우 근사치로 변환 반올림
+        소수점 이하 자릿수가 늘어난 경우 0로 채워짐
+        소수점을 제외한 전체 사이즈 고정
+
+        첫자리 표시
+
+    </div>
+
+    <script>
+        const num = [];
+        const numToFixed = []; //소수점 이하 자리수 제한 
+        const toPrecision = []; //전체 숫자 사이즈 제한, 소수점 제외
+
+        for (let a = 0; a < 10; a++) {
+            num.push(Math.random() * 100);
+            numToFixed.push(num[a].toFixed(a));
+            toPrecision.push(num[a].toPrecision(a + 4));
+            console.log(num[a], numToFixed[a], toPrecision[a]);
+        }
+    </script>
+    <!-- <script>
+        const n1 = 12345.6789;
+        const n2 = -12345.6789;
+
+        const cn1 = n1.toString()
+            .replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",");
+        const cn2 = n2.toString()
+            .replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",");
+
+        console.log(cn1, cn2);
+    </script> -->
+    <script>
+        //https://hianna.tistory.com/441
+        //https://www.w3schools.com/jsref/jsref_tolocalestring_number.asp
+        document.writeln(navigator.language);
+        //자동으로 "ko-KR" locale이 적용
+        const n1 = 12345.123456789;
+        const n2 = -12345.123456789;
+        const cn1 = n1.toLocaleString('ko-KR');
+        const cn2 = n2.toLocaleString('ko-KR');
+        console.log(cn1, cn2);
+        //  default fraction digit 값이 3 이므로 기본 소수점은 3자리
+
+        const option = {
+            maximumFractionDigits: 5
+            // 소수점 자리 표현하기 위한 방법, 현재 5자리까지 지정
+        };
+        const cn3 = n1.toLocaleString('ko-KR', {
+            maximumFractionDigits: 5
+        });
+        const cn4 = n2.toLocaleString('ko-KR', option);
+        console.log(cn3, cn4);
+
+        const cn5 = n2.toLocaleString('ko-KR', { style: "currency", currency: "KRW" });
+        console.log(cn5);
+
+        let text = n2.toLocaleString("en-US", { style: "currency", currency: "USD" });
+
+        console.log(text);
+    </script>
+</body>
+
+</html>

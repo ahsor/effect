@@ -1,0 +1,135 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta charset="utf-8" />
+<title>금융투자협회</title>
+<script src="js/jquery-1.4.2.min.js"></script>
+<style>
+body {
+	margin: 0;
+	padding: 0;
+	font-family: "맑은 고딕";
+	font-size: 12px;
+	background: url(images/background04.jpg) repeat-x;
+	color: #fff;
+}
+img {
+	border: 0;
+}
+ul {
+	margin: 0;
+	padding: 0;
+	list-style: none;
+}
+#wrapper {
+	position: relative;
+	margin: 0 auto;
+	height: 750px;
+	background: url(images/main04.jpg) no-repeat top center;
+}
+#next {
+	position: absolute;
+	z-index: 1;
+	width: 100%;
+	height: 66px;
+}
+#next a {
+	display: block;
+	width: 100%;
+	height: 66px;
+	outline: 1px solid #09f;
+}
+#banner {
+	position: absolute;
+	z-index: 1;
+	top: 68px;
+	width: 100%;
+	height: 386px;
+}
+#banner>div {
+	width: 100%;
+	height: 45px;
+}
+#banner0, #banner1 {
+	margin-bottom: 1px;
+}
+#banner0 {
+	background: url(images/open0401.jpg) no-repeat top center;
+}
+#banner1 {
+	background: url(images/open0402.jpg) no-repeat top center;
+}
+#banner2 {
+	background: url(images/open0403.jpg) no-repeat top center;
+}
+div.head0 {
+	width: 100%;
+	text-align: center;
+	background: #438cc1;
+}
+div.head1 {
+	width: 100%;
+	text-align: center;
+	background: #0b66a9;
+}
+div.head2 {
+	width: 100%;
+	text-align: center;
+	background: #1e4f74;
+}
+</style>
+</head>
+
+<body>
+<div id="wrapper">
+	<div id="next">
+		<a href="main.html" title="main.html"></a>
+	</div>
+	<div id="banner">
+		<div id="banner0" class="vertical">
+			<div class="head0">
+				<a href="#none" class="banner0"><img src="images/close0401.jpg" alt="close" /></a>
+			</div>
+		</div>
+		<div id="banner1" class="vertical">
+			<div class="head1">
+				<a href="#none" class="banner1"><img src="images/close0402.jpg" alt="close" /></a>
+			</div>
+		</div>
+		<div id="banner2" class="vertical">
+			<div class="head2">
+				<a href="#none" class="banner2"><img src="images/close0403.jpg" alt="close" /></a>
+			</div>
+		</div>
+	</div>
+</div>
+
+<script type="text/javascript">
+/* id와 class 이름 banner0, banner1, banner2로 제어하는 갤러리입니다. */
+var string; // 클릭한 메뉴의 id를 기억(String)
+var prevheight="45px"; // 펼쳐지기 전의 세로 크기(String)
+var nextheight="295px"; // 펼쳐진 후의 세로 크기(String)
+
+$(document).ready(function(){
+	string=$("div#banner0").attr("id");
+	myfunction();
+});
+$("a").click(function(){
+	string=$(this).attr("class");
+	myfunction();
+});
+function myfunction(){
+	for(var i=0; i<3; i++){
+		var menu=$("div#banner"+i);
+		if(string!=menu.attr("id")){
+			menu.children("div").animate({opacity:1}, 200);
+			menu.delay(200).animate({height:prevheight}, 300);
+		}else{
+			menu.children("div").animate({opacity:0}, 200);
+			menu.delay(200).animate({height:nextheight}, 300);
+		}
+	}
+}
+</script>
+</body>
+</html>

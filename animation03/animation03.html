@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<script src="jquery-1.7.1.min.js"></script>
+	<style>
+		.box {
+			border: 1px solid black;
+			width: 500px;
+			height: 400px;
+			overflow: hidden;
+			margin: 0 auto;
+		}
+
+		img {
+			position: relative;
+		}
+	</style>
+
+</head>
+
+<body>
+	<div class="box"><img src="img/home.jpg" /></div>
+	<script>
+		var imgw, imgh;
+
+		$('img').load(function () {
+			imgw = $('img').width();
+			imgh = $('img').height();
+
+			startFunc();
+		});
+
+		function startFunc() {
+			var posX = parseInt(Math.random() * (500 - imgw));
+			var posY = parseInt(Math.random() * (400 - imgh));
+
+			$('.box img').stop()
+				.animate({ 'left': posX, 'top': posY }, 3000, replay);
+		}
+
+		function replay() {
+			var posX = parseInt(Math.random() * (500 - imgw));
+			var posY = parseInt(Math.random() * (400 - imgh));
+			$('.box img').stop()
+				.animate({ 'left': posX, 'top': posY }, 3000, replay);
+		}
+
+	</script>
+</body>
+
+</html>

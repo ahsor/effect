@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Accordion Slider</title>
+    <!-- <link rel="stylesheet" href="style.css" /> -->
+    <!-- <script src="script.js" defer></script> -->
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            outline: none;
+            border: none;
+            list-style: none;
+        }
+
+        html {
+            font-size: 62.5%;
+        }
+
+        body {
+            min-height: 100vh;
+            background-color: #f1f1f1;
+            font-family: 'Playfair Display', serif;
+            padding: 2em;
+        }
+
+        .wrapper {
+            width: 100%;
+            max-width: 1200px;
+            min-height: inherit;
+            margin: auto;
+            /* display: grid;
+            place-content: center; */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .main_box {
+            display: flex;
+            background-color: #111;
+            color: #fff;
+            margin: 70px auto;
+            width: 900px;
+        }
+
+        .box {
+            height: 450px;
+            padding: 0 50px;
+            /* 제목여백 */
+            border-right: 2px solid #fff;
+            position: relative;
+            overflow: hidden;
+            transition: 800ms;
+            cursor: pointer;
+        }
+
+        .box h2 {
+            writing-mode: vertical-lr;
+            text-indent: 3rem;
+            font-size: 24px;
+            text-transform: uppercase;
+        }
+
+        .box.active {
+            width: calc(100% - 50px * 4 - 24px * 4);
+            /* 패딩, 문자를 뺀 나머지 */
+            padding: 0 20px;
+            /* 제목여백 */
+        }
+
+        .products {
+            display: flex;
+            gap: 2em;
+            width: 85%;
+            height: 100%;
+            position: absolute;
+            top: 0;
+            right: 0;
+            background-color: #fff;
+            color: #111;
+            padding: 2em;
+            opacity: 0;
+            transform: scale(0);
+            /* transform: translateY(100%); */
+            transform-origin: right bottom;
+            transition: 600ms;
+            cursor: default;
+        }
+
+        .products.active {
+            opacity: 1;
+            /* transform: translateY(0%); */
+            transform: scale(1);
+        }
+
+        .product {
+            width: 50%;
+        }
+
+        .product .img {
+            width: 100%;
+            height: 260px;
+            overflow: hidden;
+        }
+
+        .product img {
+            width: 100%;
+        }
+
+        .product_detail .product_name {
+            margin: 0.5em 0;
+            font-size: 1.4rem;
+            font-weight: 600;
+            color: #111;
+        }
+
+        .product_detail .product_price {
+            margin-bottom: 1em;
+        }
+
+        .product_detail .product_price strong {
+            font-size: 1.5rem;
+            font-weight: 800;
+        }
+
+        .button {
+            display: block;
+            width: 100%;
+            text-align: center;
+            margin-bottom: 0.5em;
+            padding: 0.75em 1em;
+            font-size: 1.4rem;
+            cursor: pointer;
+        }
+
+        .view_details {
+            background-color: transparent;
+            font-weight: 500;
+            border: 1px solid #111;
+        }
+
+        .add-to-cart {
+            background-color: #111;
+            color: #fff;
+            font-weight: 600;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="wrapper">
+        <ul class="main_box">
+            <li class="box active">
+                <h2>Men Fashion</h2>
+                <div class="products active">
+                    <div class="product">
+                        <div class="img"><img src="images/Long-Sleeve-Sun-Shirts.png" alt="" /></div>
+                        <div class="product_detail">
+                            <h3 class="product_name"> 긴팔셔츠(여름)</h3>
+                            <p class="product_price"><strong>35,000</strong></p>
+                            <button class="button view_details">자세히보기</button>
+                            <button class="button add-to-cart">장바구니담기</button>
+                        </div>
+                    </div>
+                    <div class="product">
+                        <div class="img"><img src="images/Long -Sleeve-Polo-Shirts-Slim-Fit.png" alt="" /></div>
+                        <div class="product_detail">
+                            <h3 class="product_name">긴팔 폴로 셔츠</h3>
+                            <p class="product_price"><strong>42,000</strong></p>
+                            <button class="button view_details">자세히보기</button>
+                            <button class="button add-to-cart">장바구니담기</button>
+                        </div>
+                    </div>
+                </div>
+            </li>
+
+            <li class="box">
+                <h2>Women Fashion</h2>
+                <div class="products">
+                    <div class="product">
+                        <div class="img"><img src="images/Reebok-Women's-Princess-Sneaker.png" alt="" /></div>
+                        <div class="product_detail">
+                            <h3 class="product_name">리복 스티커즈</h3>
+                            <p class="product_price"><strong>150,000</strong></p>
+                            <button class="button view_details">자세히보기</button>
+                            <button class="button add-to-cart">장바구니담기</button>
+                        </div>
+                    </div>
+                    <div class="product">
+                        <div class="img"><img src="images/Kontted-Woven-Bag-Handbag-Retro.png" alt="" /></div>
+                        <div class="product_detail">
+                            <h3 class="product_name">우븐 핸드백</h3>
+                            <p class="product_price"><strong>56,000</strong></p>
+                            <button class="button view_details">자세히보기</button>
+                            <button class="button add-to-cart">장바구니담기</button>
+                        </div>
+                    </div>
+                </div>
+            </li>
+            <li class="box">
+                <h2>Kids Fashion</h2>
+                <div class="products">
+                    <div class="product">
+                        <div class="img"><img src="images/jogger-pant.png" alt="" /></div>
+                        <div class="product_detail">
+                            <h3 class="product_name">조거팬츠</h3>
+                            <p class="product_price"><strong>24,000</strong></p>
+                            <button class="button view_details">자세히보기</button>
+                            <button class="button add-to-cart">장바구니담기</button>
+                        </div>
+                    </div>
+                    <div class="product">
+                        <div class="img"><img src="images/pullover-sweatshirts-casual.png" alt="" /></div>
+                        <div class="product_detail">
+                            <h3 class="product_name">캐주얼 셔츠</h3>
+                            <p class="product_price"><strong>12,000</strong></p>
+                            <button class="button view_details">자세히보기</button>
+                            <button class="button add-to-cart">장바구니담기</button>
+                        </div>
+                    </div>
+                </div>
+            </li>
+            <li class="box">
+                <h2>Sport Fashion</h2>
+                <div class="products">
+                    <div class="product">
+                        <div class="img"><img src="images/sneaker-running-shoe.png" alt="" /></div>
+                        <div class="product_detail">
+                            <h3 class="product_name">런닝 슈즈</h3>
+                            <p class="product_price"><strong>20000</strong></p>
+                            <button class="button view_details">자세히보기</button>
+                            <button class="button add-to-cart">장바구니담기</button>
+                        </div>
+                    </div>
+                    <div class="product">
+                        <div class="img"><img src="images/running-shorts.png" alt="" /></div>
+                        <div class="product_detail">
+                            <h3 class="product_name">런닝 팬츠</h3>
+                            <p class="product_price"><strong>5,0000</strong></p>
+                            <button class="button view_details">자세히보기</button>
+                            <button class="button add-to-cart">장바구니담기</button>
+                        </div>
+                    </div>
+                </div>
+            </li>
+        </ul>
+    </div>
+
+    <script>
+        const wrapper = document.querySelector('.wrapper');
+        //let currentActive = wrapper.firstElementChild.firstElementChild;
+        let currentActive = document.querySelector('.box:nth-child(1)');
+
+        wrapper.addEventListener('click', (event) => {
+            //console.log(event.target);
+
+            if (currentActive) {
+                currentActive.classList.remove('active');
+                currentActive.firstElementChild.nextElementSibling.classList.remove('active');
+            }
+            let li = event.target;
+            li.classList.add('active');
+            li.firstElementChild.nextElementSibling.classList.add('active');
+
+            currentActive = li;
+        })
+    </script>
+</body>
+
+</html>

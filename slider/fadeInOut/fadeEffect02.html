@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="../css/reset.css">
+    <style>
+        .carousel-container {
+            width: 600px;
+            height: 400px;
+            position: relative;
+        }
+
+        .carousel-slide {
+            width: 600px;
+            height: 400px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .carousel-slide>img {
+            position: absolute;
+            opacity: 0;
+            transition: 1s;
+        }
+
+        .carousel-slide>img.active {
+            opacity: 1;
+        }
+
+        .indecator {
+            position: absolute;
+            bottom: 30px;
+            width: 100%;
+        }
+
+        .indecator ul {
+            display: flex;
+            width: 100%;
+            justify-content: center;
+        }
+
+        .indecator a {
+            display: block;
+            width: 20px;
+            height: 20px;
+            background: chartreuse;
+            margin: 5px;
+        }
+
+        .indecator a.active {
+            background-color: black;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>fade Effect Gallery</h1>
+    <hr />
+    <div class="carousel-container">
+        <div class="carousel-slide">
+            <img src="http://placekitten.com/600/450" alt="" class="active" />
+            <img src="http://placekitten.com/600/411" alt="" />
+            <img src="http://placekitten.com/600/432" alt="" />
+            <img src="http://placekitten.com/600/443" alt="" />
+            <img src="http://placekitten.com/600/404" alt="" />
+        </div>
+
+        <div class="control">
+            <button id="prevBtn">Prev</button>
+            <button id="nextBtn">Next</button>
+        </div>
+        <div class="indecator">
+            <ul>
+                <li><a href="#">0</a></li>
+                <li><a href="#">1</a></li>
+                <li><a href="#">2</a></li>
+                <li><a href="#">3</a></li>
+                <li><a href="#">4</a></li>
+            </ul>
+        </div>
+    </div>
+    <!-- <script>
+        const indexBtn = document.querySelector('.indecator');
+        const img = document.querySelectorAll('.carousel-slide img');
+
+        indexBtn.addEventListener('click', function(event){
+            let index = event.target.firstChild.nodeValue;
+            //링크 value를 가져와서 값을 구함
+            console.log( index );
+            [...img].forEach((img)=>{
+                img.classList.remove('active');
+            })
+            img[index].classList.add('active');
+        })
+    </script> -->
+    <script>
+        const indexBtns = document.querySelectorAll('.indecator a');
+        const img = document.querySelectorAll('.carousel-slide img');
+        const carouselContainer = document.querySelector('.carousel-container');
+        const tt = document.querySelector('h1');
+
+        function clickHandler(event) {
+            clearInterval(timer);
+            let index = event.target.textContent;
+            //링크 value를 가져와서 값을 구함
+            console.log(index);
+            count = index;
+            numSlider();
+
+            console.log(count);
+        }
+
+        function numSlider() {
+            [...img].forEach((img, a) => {
+                img.classList.remove('active');
+                indexBtns[a].classList.remove('active');
+            })
+            img[count].classList.add('active');
+            indexBtns[count].classList.add('active');
+        }
+        let count = 0;
+        numSlider(0);
+        indexBtns.forEach((indexBtn) => {
+            indexBtn.addEventListener('click', clickHandler);
+        })
+
+    </script>
+    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.1/jquery.min.js"
+        integrity="sha512-aVKKRRi/Q/YV+4mjoKBsE4x3H+BkegoM/em46NNlCqNTmUYADjBbeNefNxYV7giUp0VxICtqdrbqU7iVaeZNXA=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script>
+        $(function () {
+            $('#prevBtn').on('click', function () {
+                $('.carousel-container').find('.active').prev().addClass('active');
+                $('.carousel-container').find('.active').next().removeClass('active');
+            })
+            $('#nextBtn').on('click', function () {
+                $('.carousel-container').find('.active').prev().removeClass('active');
+                $('.carousel-container').find('.active').next().addClass('active');
+            })
+        })
+    </script> -->
+    <script>
+        const nextBtn = document.querySelector('#nextBtn');
+        nextBtn.addEventListener('click', function (event) {
+            clearInterval(timer);
+            addCount();
+            numSlider();
+            console.log('click');
+        })
+        const prevBtn = document.querySelector('#prevBtn');
+        prevBtn.addEventListener('click', function (event) {
+            clearInterval(timer);
+            subCount();
+            numSlider();
+        })
+    </script>
+    <script>
+        let timer = setInterval(autoSlider, 3000);
+        function addCount() {
+            count++;
+            count %= 5;
+            console.log(count);
+        }
+        function subCount() {
+            console.log(count);
+            if (count <= 0) count = 4;
+            else count--;
+            count %= 5;
+        }
+        function autoSlider() {
+            addCount();
+            numSlider(count % 5);
+        }
+        carouselContainer.addEventListener('mouseleave', function () {
+            console.log('mouseleave');
+            console.log(!timer)
+            if (timer)
+                timer = setInterval(autoSlider, 3000);
+        })
+        tt.addEventListener('mouseenter', function (event) {
+            console.log('mouseenter');
+            console.log(event);
+        })
+    </script>
+</body>
+
+</html>

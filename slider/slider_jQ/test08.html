@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="../../style/reset.css">
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <style>
+        .carousel-container {
+            width: 800px;
+            margin: 100px auto;
+            border: 5px solid black;
+            /* overflow: hidden; */
+
+            position: relative;
+        }
+
+        .carousel-slide {
+            display: flex;
+            width: 100%;
+        }
+
+        .carousel-slide img {
+            width: 100%;
+        }
+
+        .controls {
+            display: flex;
+            position: absolute;
+            top: 50%;
+            width: 100%;
+            justify-content: space-between;
+        }
+
+        .controls>div {
+            font-size: 40px;
+            cursor: pointer;
+        }
+
+        .caption {
+            position: absolute;
+            bottom: 0;
+            opacity: 0;
+            background-color: white;
+        }
+
+        .indecator {
+            display: flex;
+            gap: 10px;
+            position: absolute;
+            bottom: -50px;
+            justify-content: center;
+            width: 100%;
+        }
+
+        .indecator li {
+            width: 50px;
+            height: 50px;
+            background-color: antiquewhite;
+        }
+
+        .indecator li.active {
+            background-color: black;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="carousel-container">
+        <div class="carousel-slide">
+            <img src="./images/bg4.jpg" alt="" id="lastClone">
+            <img src="./images/bg1.jpg" alt="">
+            <img src="./images/bg2.jpg" alt="">
+            <img src="./images/bg3.jpg" alt="">
+            <img src="./images/bg4.jpg" alt="">
+            <img src="./images/bg1.jpg" alt="" id="firstClone">
+        </div>
+        <div class="caption">
+            이미지 슬라이드
+        </div>
+
+        <div class="controls">
+            <div id="prev"><i class='bx bxs-chevron-left-circle'></i></div>
+            <div id="next"><i class='bx bxs-chevron-right-circle'></i></div>
+        </div>
+        <ul class="indecator">
+            <li>1</li>
+            <li>2</li>
+            <li>3</li>
+            <li>4</li>
+            <li>3</li>
+            <li>4</li>
+        </ul>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.1/dist/jquery.min.js"></script>
+    <script>
+        const carouselImages = $('.carousel-slide img');
+        const indecators = $('.indecator li');
+
+        let counter = 1;
+        // lastClone 이미지의 다음 그림을 보기 위함
+        const size = $('.carousel-container').width();
+        console.log($(carouselImages[5]).attr('id'));
+
+        $('.carousel-slide').css({
+            'transform': `translateX(${-size * counter}px)`
+        });
+        indecators.eq(counter).addClass('active');
+
+        $('#next').on('click', () => {
+            clearInterval(timer);
+            counter++;
+            //document.querySelector('.caption').style.opacity = 0; 
+            $('.carousel-slide').css({
+                'transition': '1s ease-in-out'
+            });
+            $('.carousel-slide').css({
+                'transform': `translateX(${-size * counter}px)`
+            });
+
+            // 
+            $(indecators).removeClass('active');
+            $(indecators).eq(counter).addClass('active');
+        })
+
+        $('#prev').on('click', () => {
+            clearInterval(timer);
+            counter--;
+
+            //document.querySelector('.caption').style.opacity = 0; 
+            $('.carousel-slide').css({
+                'transition': '1s ease-in-out'
+            });
+            $('.carousel-slide').css({
+                'transform': `translateX(${-size * counter}px)`
+            });
+            $(indecators).removeClass('active');
+            $(indecators).eq(counter).addClass('active');
+        })
+
+
+        $('.carousel-slide').on('transitionend', () => {
+            //document.querySelector('.caption').style.opacity = 1; 
+
+            if ($(carouselImages[counter]).attr('id') === 'firstClone') {
+                $('.carousel-slide').css({
+                    'transition': 'none'
+                });
+                counter = carouselImages.length - counter;
+                $('.carousel-slide').css({
+                    'transform': `translateX(${-size * counter}px)`
+                });
+
+            }
+            if ($(carouselImages[counter]).attr('id') === 'lastClone') {
+                $('.carousel-slide').css({
+                    'transition': 'none'
+                });
+                counter = carouselImages.length - 2;
+                $('.carousel-slide').css({
+                    'transform': `translateX(${-size * counter}px)`
+                });
+            }
+            $(indecators).removeClass('active');
+            $(indecators).eq(counter).addClass('active');
+        })
+        // indecator를 달아 보세요.
+
+        let timer = setInterval(timerSlider, 3000);
+        function timerSlider() {
+            counter++;
+            $('.carousel-slide').css({
+                'transition': '1s ease-in-out'
+            });
+            $('.carousel-slide').css({
+                'transform': `translateX(${-size * counter}px)`
+            });
+        }
+
+        //$('.carousel-container').on('mouseleave', timerSlider);
+        // 오류는 있는 마우스가 왔다가 가는 경우 문제가 발생할 수 있음
+    </script>
+</body>
+
+</html>

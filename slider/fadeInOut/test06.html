@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="../../style/reset.css">
+    <!-- 클릭 event -->
+    <style>
+        .slider-container {
+            position: relative;
+            margin: 50px auto;
+            width: 500px;
+        }
+
+        /*  button을 추가하기 위해서 필요한 레이아웃  */
+        .slider-inner {
+            width: 500px;
+            height: 300px;
+            position: relative;
+            border: 1px solid black;
+        }
+
+        .slider-box {
+            position: absolute;
+            width: 500px;
+            height: 300px;
+            opacity: 0;
+            transition: 1s;
+        }
+
+        .slider-box:nth-child(1) {
+            background-color: pink;
+        }
+
+        .slider-box:nth-child(2) {
+            background-color: green;
+        }
+
+        .slider-box:nth-child(3) {
+            background-color: skyblue;
+        }
+
+        .slider-box:nth-child(4) {
+            background-color: purple;
+        }
+
+        .slider-box:nth-child(5) {
+            background-color: orange;
+        }
+
+        .slider-img {
+            width: 100%;
+        }
+
+        .slider-box.active {
+            opacity: 1;
+        }
+
+        .slider-ctrl {
+            display: flex;
+            width: 100%;
+            height: 300px;
+            align-items: center;
+            justify-content: space-between;
+            position: absolute;
+            left: 0;
+            top: 0;
+        }
+
+        .slider-indecator {
+            position: absolute;
+            bottom: 20px;
+            width: 100%;
+        }
+
+        .slider-indecator>ul {
+            display: flex;
+            justify-content: center;
+            gap: 5px;
+        }
+
+        .slider-container a {
+            display: block;
+            width: 10px;
+            height: 10px;
+            background-color: lightgray;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="slider-container">
+        <div class="slider-inner">
+            <!--  button을 추가하기 위해서 필요한 레이아웃   -->
+            <div class="slider-box"><img src="" alt="" class="slider-img"></div>
+            <div class="slider-box"><img src="" alt="" class="slider-img"></div>
+            <div class="slider-box"><img src="" alt="" class="slider-img"></div>
+            <div class="slider-box"><img src="" alt="" class="slider-img"></div>
+            <div class="slider-box"><img src="" alt="" class="slider-img"></div>
+        </div>
+        <div class="slider-ctrl">
+            <!-- button, a, span, div 등 아무거나 버튼으로 사용 가능 -->
+            <button class="btn btn-left">prev</button>
+            <button class="btn btn-right">next</button>
+        </div>
+        <div class="slider-indecator">
+            <ul>
+                <li><a href="#">0</a></li>
+                <li><a href="#">1</a></li>
+                <li><a href="#">2</a></li>
+                <li><a href="#">3</a></li>
+                <li><a href="#">4</a></li>
+            </ul>
+        </div>
+    </div>
+
+    <script>
+        let sliderIndecator = document.querySelector('.slider-indecator');
+        const sliderBoxs = document.querySelectorAll('.slider-box');
+
+        const sliderIndecatorFn = (event) => {
+            event.preventDefault();
+
+            console.log(event.target.innerText);
+            // innerHTML은 li 잘못 클릭하면 a태그 통재로 가져오고 
+            // innerText는 태그는 빼고 문자만 가져옴
+
+            //sliderBoxs.forEach(function(){})
+            sliderBoxs.forEach((slider) => {
+                slider.classList.remove('active');
+            })
+
+            sliderBoxs[event.target.innerText].classList.add('active');
+            // a태그의 부모인 li의 번호를 구하는 방법
+            // 0 ~ 4까지의 숫자
+        }
+        sliderIndecator.addEventListener('click', sliderIndecatorFn);
+    </script>
+    <script>
+        // num = 0; 
+        // prev 버튼은 4 3 2 1 0 4 3 2 1 0 
+        // next 버튼은 0 1 2 3 4 0 1 2 3 4
+
+        let num = 0;
+        let currentActive;
+        const next = document.querySelector('.btn-right');
+        const prev = document.querySelector('.btn-left');
+
+        const nextSlider = () => {
+            if (currentActive) {
+                currentActive.classList.remove('active');
+            }
+            num++; // next 버튼은 0 1 2 3 4 0 1 2 3 4
+            sliderBoxs[num % sliderBoxs.length].classList.add('active');
+
+            currentActive = sliderBoxs[num % sliderBoxs.length];
+            console.log(num % sliderBoxs.length);
+        }
+        const prevSlider = () => {
+            if (currentActive) {
+                currentActive.classList.remove('active');
+            }
+            // prev 버튼은 4  3  2  1  0 4 3 2 1 0 
+            if (num == 0) num = sliderBoxs.length;
+            //  num = 5; 
+            num--;  // 0 -1 -2 -3 -4 
+            sliderBoxs[num % sliderBoxs.length].classList.add('active');
+
+            currentActive = sliderBoxs[num % sliderBoxs.length];
+            console.log(num % sliderBoxs.length);
+        }
+
+        next.addEventListener('click', nextSlider);
+        prev.addEventListener('click', prevSlider);
+    </script>
+
+
+    <!-- <script>
+        let sliderBoxs = document.querySelectorAll('.slider-box');
+        console.log(sliderBoxs);
+ 
+        let currentActive; 
+        let num = 0; 
+        let imgLength = sliderBoxs.length ; 
+
+        // function sliderFn(){}
+        const sliderFn = ()=>{
+            if( currentActive ){
+                currentActive.classList.remove('active');
+            }
+
+            let currentNum = num++ % imgLength;
+            // % 연산을 한 후 currentNum 저장까지 끝나면 
+            // 제일 나중에 num 증가시킴 A에 준 효과와 같음
+            sliderBoxs[currentNum].classList.add('active');
+            // if를 사용하면 = 등으로 혼돈이 발생을 줄일 수 있음 
+
+            currentActive = sliderBoxs[currentNum];
+            //num++;  A
+        }
+
+        sliderFn(num); // 맨처음 한번 호출 init = 초기화
+        const timer = setInterval(sliderFn, 3000);
+    </script>  -->
+</body>
+
+</html>

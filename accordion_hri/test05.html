@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div>
+        https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Intl/NumberFormat
+
+        //option에 대한 설명 링크
+        https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Intl/NumberFormat/NumberFormat#options
+    </div>
+    <!-- <script>
+        const number = 123456.789;
+        const formatter = new Intl.NumberFormat('ko');
+        console.log(formatter.format(number)); // format만 붙여도 천단위 구분 기호 
+
+        // 2번째인자에 다양한 옵션 지정 가능 
+        const hou = new Intl.NumberFormat('ko-KR', { style: 'currency', currency: 'KRW' }).format(number);
+        console.log(hou);
+
+
+        const formatter2 = new Intl.NumberFormat('ko', {
+            notation: 'compact'
+        });
+        console.log(formatter2.format(number)); // 12만
+        //  compactDisplay:   'long' | 'short'
+        //  notation: 'compact'
+        //  Only used when notation is "compact". Takes either "short" (default) or "long".
+        // 표기법이 "콤팩트"인 경우에만 사용됩니다. "짧은"(기본값) 또는 "긴"을 사용합니다.
+
+
+        // 나라 형식을 바꾸면 
+        const formatter3 = new Intl.NumberFormat('en', {
+            notation: 'compact',
+        });
+        console.log(formatter3.format(number)); // 123K
+
+        // 나라 형식을 바꾸면 , 옵션을 추가하면 
+        const formatter4 = new Intl.NumberFormat('en', {
+            notation: 'compact',
+            compactDisplay: 'long'
+        });
+        console.log(formatter4.format(number));
+        console.log(formatter4.format(987456321));
+
+        // 브라우저의 사용자 언어팩에 따른 단위 지정 
+        const formatter5 = new Intl.NumberFormat(navigator.language, {
+            notation: 'compact',
+        });
+        console.log(formatter5.format(number)); // 123K
+    </script> -->
+
+    <!-- <script>
+        const number = 123456.789;
+
+        //화폐단위 표시 
+        const formatter1 = new Intl.NumberFormat(navigator.language, {
+            style: 'currency',
+            currency: 'KRW',
+            notation: 'compact',
+        });
+        console.log(formatter1.format(number)); // 123K
+
+        console.log(new Intl.NumberFormat('ko-KR', { style: 'currency', currency: 'KRW' }).format(number));
+        // expected output: "₩123,457"
+        console.log(new Intl.NumberFormat('ko-KR', { style: 'currency', currency: 'KRW', maximumSignificantDigits: 3 }).format(number));
+        // expected output: "₩123,000"
+        console.log(new Intl.NumberFormat('ko-KR', { style: 'currency', currency: 'KRW', maximumSignificantDigits: 1 }).format(number));
+        // expected output: "₩100,000"
+
+        // the Japanese yen doesn't use a minor unit
+        console.log(new Intl.NumberFormat('ja-JP', { style: 'currency', currency: 'JPY' }).format(number));
+        // expected output: "￥123,457"
+        console.log(new Intl.NumberFormat('ja-JP', { style: 'currency', currency: 'JPY', maximumSignificantDigits: 3 }).format(number));
+        // expected output: "￥123,457"
+
+        // limit to three significant digits
+        console.log(new Intl.NumberFormat('en-IN', { style: 'currency', currency: 'USD', maximumSignificantDigits: 3 }).format(number));
+        console.log(new Intl.NumberFormat('en-IN', { maximumSignificantDigits: 3 }).format(number));
+        console.log(new Intl.NumberFormat('en-IN', { maximumSignificantDigits: 2 }).format(number));
+        console.log(new Intl.NumberFormat('en-IN', { maximumSignificantDigits: 1 }).format(number));
+// expected output: "1,23,000"
+
+    </script> -->
+    <!-- <script>
+        const number = 123456.789;
+
+        // 단위 표시 
+        console.log(new Intl.NumberFormat('pt-PT', {
+            style: 'unit',
+            unit: 'kilometer-per-hour'
+        }).format(50));
+        // 50 km/h
+
+        const option = {
+            style: 'unit',
+            unit: 'kilometer-per-hour'
+        }
+        console.log(new Intl.NumberFormat('pt-PT', option).format(50));
+        // 50 km/h
+
+        // ./test04.html 처리 확인 할 것 
+        console.log((16).toLocaleString('en-GB', {
+            style: 'unit',
+            unit: 'liter',
+            unitDisplay: 'long',
+        }));
+    </script> -->
+
+    <!-- <script>
+        // 개시물 올라온 시간 표시하기 
+        const formatter = new Intl.RelativeTimeFormat('en');
+        console.log(formatter.format(1, 'day')); // in 1 day
+        console.log(formatter.format(2, 'day')); // in 2 days
+        console.log(formatter.format(-1, 'day')); // 1 days ago
+        console.log(formatter.format(-2, 'day')); //2 days ago
+
+
+        const formatter1 = new Intl.RelativeTimeFormat('en', { numeric: 'auto' });
+        console.log(formatter1.format(1, 'day')); // tomorrow
+        console.log(formatter1.format(2, 'day')); //in 2 days
+        console.log(formatter1.format(-1, 'day')); // yesterday
+        console.log(formatter1.format(-2, 'day')); // 2 days ago
+
+        const formatter3 = new Intl.RelativeTimeFormat('ko');
+        console.log(formatter3.format(1, 'day')); //  1일 후
+        console.log(formatter3.format(2, 'day')); //  2일 후
+        console.log(formatter3.format(-1, 'day')); //  1일 전
+        console.log(formatter3.format(-2, 'day')); // 2일 전 
+
+        const formatter4 = new Intl.RelativeTimeFormat('ko', { numeric: 'auto' });
+        console.log(formatter4.format(1, 'day')); //  내일
+        console.log(formatter4.format(2, 'day')); // 모레
+        console.log(formatter4.format(-1, 'day')); //  어제
+        console.log(formatter4.format(-2, 'day')); //  그저께
+        console.log(formatter4.format(-2, "hour")); //   
+
+        // 기준은 날짜 뿐만 아니라 시,분,초,달,분기 등까지 표시 가능 함 
+        // 'day'대신 ""를 누를면 어시스트 표시 됨 
+    </script> -->
+    <!-- <script>
+        // example : 상대적인 시간 계산 하기 
+        const myFrom = new Intl.RelativeTimeFormat('ko', { numeric: 'auto' });
+        const today = new Date();
+        const started = new Date(2015, 10, 10);
+        const currentday = Math.ceil(started - today) / (1000 * 60 * 60 * 24);
+        console.log(`지난시간 : ${myFrom.format(currentday, 'day')}`)
+    </script> -->
+    <script>
+        // 날짜/시간 포맷하기 
+
+        const date = new Date(2015, 10, 12);
+        console.log(date.toString());
+        console.log(date.toDateString());
+        console.log(new Intl.DateTimeFormat('ko-KR').format(date));
+        console.log(new Intl.DateTimeFormat('en').format(date));
+
+        // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date/toLocaleDateString
+        console.log(date.toLocaleDateString());
+        console.log(date.toLocaleDateString('en'));
+
+        const options = {
+            weekday: "long",
+            year: "numeric",
+            month: "long",
+            day: "numeric",
+        }; // 분, 시간, 날짜 등 세부 옵션을 지정 할 수 있음 
+        console.log(date.toLocaleDateString('ko', options));
+        console.log(date.toLocaleDateString('en', options));
+    </script>
+    <script>
+        // moment.js
+        // timeago.js  :  https://www.npmjs.com/package/timeago.js/v/4.0.0-beta.3
+    </script>
+</body>
+
+</html>

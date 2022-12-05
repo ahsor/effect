@@ -1,0 +1,192 @@
+/* google font */
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700;800&display=swap');
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  outline: none;
+  border: none;
+  list-style: none;
+}
+
+html {
+  font-size: 62.5%;
+}
+
+body {
+  min-height: 100vh;
+  background-color: #f1f1f1;
+  font-family: 'Playfair Display', serif;
+  padding: 2em;
+}
+
+/* global styling */
+img {
+  max-width: 100%;
+  display: block;
+  height: auto;
+}
+
+h2 {
+  color: #fff;
+  font-size: 2rem;
+  font-weight: 600;
+}
+
+h3 {
+  font-size: 1.6rem;
+  color: #111;
+  font-weight: 600;
+}
+
+.wrapper {
+  width: 100%;
+  max-width: 120rem;
+  min-height: inherit;
+  margin: auto;
+  display: grid;
+  place-content: center;
+}
+
+.main_box {
+  display: flex;
+  background-color: #111;
+  color: #fff;
+  margin: 7em auto;
+  width: 90rem;
+}
+
+.box {
+  height: 42rem;
+  padding: 0 6em;
+  border-right: 2px solid #fff;
+  position: relative;
+  overflow: hidden;
+  transition: 800ms;
+  cursor: pointer;
+}
+
+.box h2 {
+  width: 4rem;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  writing-mode: vertical-rl;
+  /* rotate: 180deg; */
+  position: absolute;
+  left: 0;
+  right: 0;
+  margin: 0 auto;
+  text-transform: uppercase;
+  color: #fff;
+  letter-spacing: 4px;
+  font-weight: 400;
+}
+
+.box.active h2 {
+  /* left: 25px;
+  right: auto; */
+  width: 8rem;
+  /* 너비로 처리 할 수 있음  */
+  margin: 0;
+  font-weight: 600;
+}
+
+.products {
+  display: flex;
+  gap: 2em;
+  width: 85%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  right: 0;
+  background-color: #fff;
+  color: #111;
+  padding: 2em;
+  opacity: 0;
+  transform: translateY(100%);
+  transition: 600ms;
+  cursor: default;
+}
+
+.box.active {
+  width: 70% !important;
+}
+
+.box.active .products {
+  opacity: 1;
+  transform: none;
+}
+
+.product {
+  width: 20rem;
+  height: auto;
+  padding: 0.5em;
+  border: 0.5px solid #e2e2e2;
+  overflow: hidden;
+}
+
+.product img {
+  width: 100%;
+  height: 22rem;
+  margin-bottom: 0.25em;
+}
+
+.product_detail .product_name {
+  margin: 0.5em 0;
+  font-size: 1.4rem;
+  font-weight: 600;
+  color: #111;
+}
+
+.product_detail .product_price {
+  margin-bottom: 1em;
+}
+
+.product_detail .product_price strong {
+  font-size: 1.5rem;
+  font-weight: 800;
+}
+
+.button {
+  display: block;
+  width: 100%;
+  text-align: center;
+  margin-bottom: 0.5em;
+  padding: 0.75em 1em;
+  font-size: 1.4rem;
+  cursor: pointer;
+}
+
+.view_details {
+  background-color: transparent;
+  font-weight: 500;
+  border: 1px solid #111;
+}
+
+.add-to-cart {
+  background-color: #111;
+  color: #fff;
+  font-weight: 600;
+}
+
+/* Media Queries */
+@media screen and (max-width: 960px) {
+  .wrapper {
+    scale: 0.8;
+  }
+}
+
+@media screen and (max-width: 730px) {
+  .wrapper {
+    scale: 0.6;
+  }
+}
+
+@media screen and (max-width: 500px) {
+  .wrapper {
+    scale: 0.45;
+  }
+}

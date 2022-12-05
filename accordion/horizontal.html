@@ -1,0 +1,143 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta charset="utf-8" />
+<title>금융투자협회</title>
+<script src="js/jquery-1.4.2.min.js"></script>
+<style>
+body {
+	margin: 0;
+	padding: 0;
+	font-family: "맑은 고딕";
+	font-size: 12px;
+	background: url(images/background03.jpg) repeat-x;
+	color: #fff;
+}
+img {
+	border: 0;
+}
+ul {
+	margin: 0;
+	padding: 0;
+	list-style: none;
+}
+#wrapper {
+	position: relative;
+	margin: 0 auto;
+	width: 999px;
+	height: 750px;
+	background: url(images/main03.jpg) no-repeat;
+}
+#next {
+	position: absolute;
+	z-index: 1;
+	width: 999px;
+	height: 66px;
+}
+#next a {
+	display: block;
+	width: 999px;
+	height: 66px;
+}
+#banner {
+	position: absolute;
+	z-index: 2;
+	top: 92px;
+	width: 1009px;
+	height: 375px;
+	overflow: hidden; /* 메뉴가 들썩이는 오류로 가로 수치 변경(999px > 1009px) */
+}
+#banner>div {
+	float: left;
+	width: 201px;
+	height: 375px;
+}
+#banner0 {
+	background: url(images/open0301.jpg) no-repeat;
+}
+#banner1 {
+	background: url(images/open0302.jpg) no-repeat;
+}
+#banner2 {
+	background: url(images/open0303.jpg) no-repeat;
+}
+div.relative {
+	position: relative;
+}
+span.head0, span.head1, span.head2 {
+	display: block;
+	position: absolute;
+	width: 201px;
+	height: 375px;
+}
+span.head0 {
+	background: url(images/close0301.jpg) no-repeat;
+}
+span.head0 a, span.head1 a, span.head2 a {
+	display: block;
+	margin-top: 154px;
+}
+span.head1 {
+	background: url(images/close0302.jpg) no-repeat;
+}
+span.head2 {
+	background: url(images/close0303.jpg) no-repeat;
+}
+</style>
+</head>
+
+<body>
+<div id="wrapper">
+	<div id="next">
+		<a href="index04.html" title="index04.html"></a>
+	</div>
+	<div id="banner">
+		<div id="banner0" class="horizontal">
+			<div class="relative">
+				<span class="head0"><a href="#none"><img src="images/clickbutton1.jpg" alt="click" class="banner0" /></a></span>
+			</div>
+		</div>
+		<div id="banner1" class="horizontal">
+			<div class="relative">
+				<span class="head1"><a href="#none"><img src="images/clickbutton1.jpg" alt="click" class="banner1" /></a></span>
+			</div>
+		</div>
+		<div id="banner2" class="horizontal">
+			<div class="relative">
+				<span class="head2"><a href="#none"><img src="images/clickbutton1.jpg" alt="click" class="banner2" /></a></span>
+			</div>
+		</div>
+	</div>
+</div>
+
+<script type="text/javascript">
+/* id와 class 이름 banner0, banner1, banner2로 제어하는 갤러리입니다. */
+var string; // 클릭한 메뉴의 id를 기억(String)
+var prevwidth="201px"; // 펼쳐지기 전의 가로 크기(String)
+var nextwidth="597px"; // 펼쳐진 후의 가로 크기(String)
+
+$(document).ready(function(){
+	string=$("div#banner0").attr("id");
+	myfunction();
+});
+$("div.relative>span>a>img").click(function(){
+	string=$(this).attr("class");
+	myfunction();
+});
+function myfunction(){
+	for(var i=0; i<3; i++){
+		var menu=$("div#banner"+i);
+		if(string!=menu.attr("id")){
+			menu.children("div").animate({opacity:1}, 200);
+			/* menu.delay(200).animate({width:prevwidth}, 300); */
+			menu.animate({width:prevwidth}, 300);
+		}else{
+			menu.children("div").animate({opacity:0}, 200);
+			/* menu.delay(200).animate({width:nextwidth}, 300); */
+			menu.animate({width:nextwidth}, 300);
+		}
+	}
+}
+</script>
+</body>
+</html>

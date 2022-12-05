@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Accordion Slider</title>
+    <style>
+        h3 {
+            width: 400px;
+            height: 400px;
+            /* 가로너비를 200일때와 비교 */
+        }
+
+        h3:nth-child(1) {}
+
+        h3:nth-child(2) {
+            writing-mode: horizontal-tb;
+            /* 기본 */
+        }
+
+        h3:nth-child(3) {
+            /* 오른쪽부터 쓰고 싶다면, 아랍어에 필요한 기능 */
+            direction: rtl;
+        }
+
+        h3:nth-child(4) {
+            writing-mode: vertical-rl;
+        }
+
+        h3:nth-child(5) {
+            writing-mode: vertical-lr;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="wrapper">
+        <h3>한글은 아름다운 HELLO JAVASCRIPT!! Lorem, ipsum dolor sit amet consectetur adipisicing elit. Ullam error recusandae
+            atque vel! Culpa neque sequi inventore cum quisquam deleniti iusto reprehenderit, nisi odio tenetur tempora.
+            Eum inventore maxime consequuntur?</h3>
+        <h3>한글은 아름다운 HELLO JAVASCRIPT!! Lorem, ipsum dolor sit amet consectetur adipisicing elit. Ullam error recusandae
+            atque vel! Culpa neque sequi inventore cum quisquam deleniti iusto reprehenderit, nisi odio tenetur tempora.
+            Eum inventore maxime consequuntur?</h3>
+        <h3>한글은 아름다운 HELLO JAVASCRIPT!! Lorem, ipsum dolor sit amet consectetur adipisicing elit. Ullam error recusandae
+            atque vel! Culpa neque sequi inventore cum quisquam deleniti iusto reprehenderit, nisi odio tenetur tempora.
+            Eum inventore maxime consequuntur?</h3>
+        <h3>한글은 아름다운 HELLO JAVASCRIPT!! Lorem, ipsum dolor sit amet consectetur adipisicing elit. Ullam error recusandae
+            atque vel! Culpa neque sequi inventore cum quisquam deleniti iusto reprehenderit, nisi odio tenetur tempora.
+            Eum inventore maxime consequuntur?</h3>
+        <h3>한글은 아름다운 HELLO JAVASCRIPT!! Lorem, ipsum dolor sit amet consectetur adipisicing elit. Ullam error recusandae
+            atque vel! Culpa neque sequi inventore cum quisquam deleniti iusto reprehenderit, nisi odio tenetur tempora.
+            Eum inventore maxime consequuntur?</h3>
+    </div>
+</body>
+
+</html>
+
+<!-- 
+  //writing-mode
+
+  https://developer.mozilla.org/en-US/docs/Web/CSS/writing-mode
+  https://developer.mozilla.org/ko/docs/Web/CSS/CSS_Flow_Layout/Flow_Layout_and_Writing_Modes 
+
+  horizontal-tb
+  콘텐츠를 수평적으로(왼쪽→오른쪽) 나열 후, 글자를 수직적으로(위→아래).
+  영어, 한글, 아랍어도 모두 이에 해당 
+  vertical-rl
+  콘텐츠를 수직적으로 (위→아래) 나열 후, 글자를 수평적으로(오른쪽→왼쪽) 써감. 
+  ※ 한글은 그대로 있고, 영문은 오른쪽으로 누움.
+  가로 사이즈에 따른 문자열 시작 위치 다를 수 있음 
+  vertical-lr
+  콘텐츠를 수직적으로 (위→아래) 나열 후, 글자를 수평적으로 (왼쪽→오른쪽) 써감.
+  ※ 한글은 그대로 있고, 영문은 오른쪽으로 누움.
+ -->
